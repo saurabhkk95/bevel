@@ -11,10 +11,15 @@
 - name: Print component_type value
   debug:
     var: component_type
+- name: Print component_name value
   debug:
     var: component_name
+- name: Print namespace value
   debug:
     var: namespace
+- name: Print component_data value
+  debug:
+    var: component_data
 
 - name: 'Wait for {{ component_type }} {{ component_name }} in {{ namespace }}'
   k8s_info:
