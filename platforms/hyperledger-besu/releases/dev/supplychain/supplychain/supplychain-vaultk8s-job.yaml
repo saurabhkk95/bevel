@@ -20,7 +20,7 @@ spec:
       name: supplychain-vaultk8s-job
       namespace: supplychain-bes
       images:
-        alpineutils: ghcr.io/hyperledger/alpine-utils:1.0
+        alpineutils: ghcr.io/mgcepeda/alpine-utils:1.0
         pullPolicy: IfNotPresent
 
     vault:
