@@ -25,7 +25,7 @@ spec:
       repository: quorumengineering/tessera:hashicorp-21.7.3
       pullSecret: regcred
       pullPolicy: IfNotPresent
-      alpineutils: "ghcr.io/hyperledger/bevel-alpine-ext:latest
+      alpineutils: ghcr.io/hyperledger/bevel-alpine-ext:latest
     vault:
       address: http://a94f258ac51304b63a9bceb42a204cb6-2100507752.eu-west-1.elb.amazonaws.com:20002
       secretengine: secretsv2
