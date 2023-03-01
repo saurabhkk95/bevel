@@ -1,0 +1,80 @@
+NAMESPACE              NAME                                         READY   STATUS                  RESTARTS          AGE
+carriers-bes           carriers-0                                   1/1     Running                 0                 7m11s
+carriers-bes           carriers-ambassador-job-j4nd8                0/2     Completed               0                 18m
+carriers-bes           carriers-tessera-0                           0/2     Pending                 0                 7m9s
+carriers-bes           carriers-tessera-job-s8k4r                   0/1     Completed               0                 11m
+carriers-bes           carriers-vaultk8s-job-7mg46                  0/1     Completed               0                 23m
+cert-manager           cert-manager-57744cf6b6-psjfp                1/1     Running                 0                 15h
+cert-manager           cert-manager-cainjector-74465848cc-222cb     1/1     Running                 0                 15h
+cert-manager           cert-manager-webhook-6b7c9dbf87-fsrsc        1/1     Running                 0                 15h
+cmar-bes               cmar-0                                       1/1     Running                 0                 14m
+cmar-bes               cmar-ambassador-job-hslkv                    0/2     Completed               0                 34m
+cmar-bes               cmar-expressapi-68d5656775-hqh68             0/1     PodInitializing         0                 2m14s
+cmar-bes               cmar-tessera-0                               0/2     Init:CrashLoopBackOff   7 (4m14s ago)     15m
+cmar-bes               cmar-tessera-job-9hkqm                       0/1     Completed               0                 26m
+cmar-bes               cmar-vaultk8s-job-scsxq                      0/1     Completed               0                 41m
+default                ambassador-7d4c88b6bb-89l49                  1/1     Running                 0                 15h
+default                ambassador-7d4c88b6bb-9kb5l                  1/1     Running                 0                 15h
+default                ambassador-7d4c88b6bb-zxmgw                  1/1     Running                 0                 15h
+default                ambassador-redis-64b7c668b9-4qnxz            1/1     Running                 0                 15h
+default                external-dns-5bb6579847-8dztf                0/1     CrashLoopBackOff        110 (4m6s ago)    15h
+default                myjenkins-0                                  2/2     Running                 0                 15h
+flux-be-mar            helm-controller-c9867c799-jdqqb              1/1     Running                 0                 56m
+flux-be-mar            kustomize-controller-9d8d468c9-5m854         1/1     Running                 0                 56m
+flux-be-mar            notification-controller-648bbb9db7-g7vbc     1/1     Running                 0                 56m
+flux-be-mar            source-controller-dbb4978d4-z5sxm            1/1     Running                 0                 56m
+flux-sau               helm-controller-5dd8d95874-vqg8s             1/1     Running                 0                 30m
+flux-sau               kustomize-controller-b4b78b46d-4pd7b         1/1     Running                 0                 30m
+flux-sau               notification-controller-648bbb9db7-tqrmd     1/1     Running                 0                 30m
+flux-sau               source-controller-7544d4545f-fv9zf           1/1     Running                 0                 30m
+ingress-controller     haproxy-ingress-8wb9x                        1/1     Running                 222 (3s ago)      10h
+ingress-controller     haproxy-ingress-gl9wh                        1/1     Running                 221 (31s ago)     10h
+ingress-controller     haproxy-ingress-lwxng                        1/1     Running                 221 (5m24s ago)   10h
+ingress-controller     ingress-default-backend-f5dfbf97-2fx45       1/1     Running                 0                 15h
+kube-system            aws-node-f9m9z                               1/1     Running                 0                 10h
+kube-system            aws-node-hhhmn                               1/1     Running                 0                 10h
+kube-system            aws-node-s667s                               1/1     Running                 0                 10h
+kube-system            coredns-8568c98b77-q6jpm                     1/1     Running                 0                 15h
+kube-system            coredns-8568c98b77-smrxw                     1/1     Running                 0                 15h
+kube-system            kube-proxy-prrd6                             1/1     Running                 0                 10h
+kube-system            kube-proxy-svsnl                             1/1     Running                 0                 10h
+kube-system            kube-proxy-wxtbq                             1/1     Running                 0                 10h
+kube-system            metrics-server-58c885686f-79cs9              1/1     Running                 0                 15h
+kube-system            tiller-deploy-7f47cff6b6-pdg5m               1/1     Running                 0                 15h
+kubernetes-dashboard   dashboard-metrics-scraper-76585494d8-ffrz4   1/1     Running                 0                 15h
+kubernetes-dashboard   kubernetes-dashboard-5996555fd8-zs2kf        1/1     Running                 0                 15h
+lens-metrics           kube-state-metrics-6bf59b6968-gdxj4          1/1     Running                 0                 15h
+lens-metrics           node-exporter-6lrn6                          1/1     Running                 0                 10h
+lens-metrics           node-exporter-ftb6n                          1/1     Running                 0                 10h
+lens-metrics           node-exporter-pmngn                          1/1     Running                 0                 10h
+lens-metrics           prometheus-0                                 1/1     Running                 0                 15h
+mmar-bes               mmar-0                                       1/1     Running                 0                 13m
+mmar-bes               mmar-ambassador-job-jsqhv                    0/2     Completed               0                 33m
+mmar-bes               mmar-tessera-0                               0/2     Init:CrashLoopBackOff   7 (3m56s ago)     15m
+mmar-bes               mmar-tessera-job-zzl6t                       0/1     Completed               0                 22m
+mmar-bes               mmar-vaultk8s-job-g4lj4                      0/1     Completed               0                 40m
+scmar-bes              scmar-vaultk8s-job-77ls9                     0/1     Completed               0                 43m
+scmar-bes              validator1-0                                 1/1     Running                 0                 27m
+scmar-bes              validator1-ambassador-job-gldhc              0/2     Completed               0                 36m
+scmar-bes              validator2-0                                 1/1     Running                 0                 27m
+scmar-bes              validator2-ambassador-job-cnlx8              0/2     Completed               0                 35m
+smar-bes               smar-0                                       1/1     Running                 0                 12m
+smar-bes               smar-ambassador-job-mj5lp                    0/2     Completed               0                 30m
+smar-bes               smar-tessera-0                               0/2     Init:CrashLoopBackOff   7 (2m52s ago)     14m
+smar-bes               smar-tessera-job-h6pn9                       0/1     Completed               0                 17m
+smar-bes               smar-vaultk8s-job-qtlrv                      0/1     Completed               0                 37m
+supplychain-bes        supplychain-vaultk8s-job-4m46w               0/1     Completed               0                 24m
+supplychain-bes        validator1-0                                 1/1     Running                 0                 14m
+supplychain-bes        validator1-ambassador-job-qrlgt              0/2     Completed               0                 22m
+supplychain-bes        validator2-0                                 1/1     Running                 0                 14m
+supplychain-bes        validator2-ambassador-job-nrlcx              0/2     Completed               0                 21m
+supplychain-bes        validator3-0                                 1/1     Running                 0                 14m
+supplychain-bes        validator3-ambassador-job-rf5w6              0/2     Completed               0                 20m
+supplychain-bes        validator4-0                                 1/1     Running                 0                 14m
+supplychain-bes        validator4-ambassador-job-xhc25              0/2     Completed               0                 19m
+vault                  vault-0                                      1/1     Running                 0                 15h
+wmar-bes               wmar-0                                       1/1     Running                 0                 13m
+wmar-bes               wmar-ambassador-job-48lh4                    0/2     Completed               0                 31m
+wmar-bes               wmar-tessera-0                               0/2     Init:CrashLoopBackOff   7 (2m48s ago)     14m
+wmar-bes               wmar-tessera-job-4c7kf                       0/1     Completed               0                 19m
+wmar-bes               wmar-vaultk8s-job-nxvnp                      0/1     Completed               0                 39m
