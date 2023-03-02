@@ -1,0 +1,24 @@
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS        CLAIM                                        STORAGECLASS      REASON   AGE
+pvc-09080635-6f84-4fa9-94f2-393107cdd03e   1Gi        RWO            Delete           Bound         scmar-bes/validator1-pv-validator1-0         awsstorageclass            45m
+pvc-0d184207-7633-4869-bb4a-d8f67a82a55b   1Gi        RWO            Delete           Bound         smar-bes/smar-tessera-pv-smar-tessera-0      awsstorageclass            33m
+pvc-25fccea7-ec93-474a-bc1b-7d697de4818a   1Gi        RWO            Delete           Terminating   malv-bes/malv-tessera-mysql-malv-tessera-0   awsstorageclass            508d
+pvc-2c758b27-4890-440f-ad2e-7ea5dd488202   8Gi        RWO            Delete           Terminating   default/myjenkins                            gp2                        23d
+pvc-470a9ed5-ebfb-421b-ac16-b5ce468d49dc   1Gi        RWO            Delete           Terminating   malv-bes/malv-pv-malv-0                      awsstorageclass            508d
+pvc-48435f6e-5e23-4452-8adf-592a992b815c   1Gi        RWO            Delete           Bound         wmar-bes/wmar-pv-wmar-0                      awsstorageclass            32m
+pvc-4c2d3bd4-cc98-42b4-b56a-fa3107edbcd3   1Gi        RWO            Delete           Bound         mmar-bes/mmar-pv-mmar-0                      awsstorageclass            32m
+pvc-60979d16-1d7f-4492-a7fd-e1db86d55c2c   10Gi       RWO            Delete           Terminating   vault/data-vault-0                           gp2                        135d
+pvc-649a0745-896f-4820-8171-d0841a9f0194   1Gi        RWO            Delete           Terminating   malv-bes/malv-tessera-pv-malv-tessera-0      awsstorageclass            508d
+pvc-679c0ba4-7226-4517-8b7c-d260a5011f92   10Gi       RWO            Delete           Terminating   default/data-vault-0                         gp2                        614d
+pvc-7d7b8fdf-3b6a-4ce1-8d25-db572c1208d4   1Gi        RWO            Delete           Bound         wmar-bes/wmar-tessera-mysql-wmar-tessera-0   awsstorageclass            33m
+pvc-88fb069d-4f91-470c-965c-2bafdb5b3179   1Gi        RWO            Delete           Bound         wmar-bes/wmar-tessera-pv-wmar-tessera-0      awsstorageclass            33m
+pvc-8f58db9b-9f7b-4c37-8b38-1ce1973aee40   1Gi        RWO            Delete           Bound         cmar-bes/cmar-pv-cmar-0                      awsstorageclass            33m
+pvc-94d78075-b250-480b-a7cf-2d7f588dc624   1Gi        RWO            Delete           Terminating   calv-bes/calv-pv-calv-0                      awsstorageclass            508d
+pvc-c1800e67-fe9d-4a32-b190-bda918338e0d   1Gi        RWO            Delete           Bound         smar-bes/smar-pv-smar-0                      awsstorageclass            31m
+pvc-cb599fd2-4634-43b8-9432-d2426b3a73b2   1Gi        RWO            Delete           Terminating   calv-bes/calv-tessera-mysql-calv-tessera-0   awsstorageclass            508d
+pvc-d1329853-ed9b-442b-aba0-3624e402d495   1Gi        RWO            Delete           Bound         cmar-bes/cmar-tessera-pv-cmar-tessera-0      awsstorageclass            34m
+pvc-de500290-3d28-4cc7-a8b9-f0eb915c0a09   1Gi        RWO            Delete           Bound         mmar-bes/mmar-tessera-mysql-mmar-tessera-0   awsstorageclass            34m
+pvc-e2d3ccee-5e2b-4e7b-be3a-a3efc4e31c9e   1Gi        RWO            Delete           Bound         scmar-bes/validator2-pv-validator2-0         awsstorageclass            45m
+pvc-e4b57251-6235-4831-9757-e9664f781ddc   19Gi       RWO            Delete           Terminating   lens-metrics/data-prometheus-0               gp2                        2y80d
+pvc-ea5079ca-df0b-4bde-aca0-0d1f76ff00c1   1Gi        RWO            Delete           Bound         smar-bes/smar-tessera-mysql-smar-tessera-0   awsstorageclass            33m
+pvc-ef2300b2-c3aa-4013-92b1-612ff8c5fc07   1Gi        RWO            Delete           Bound         cmar-bes/cmar-tessera-mysql-cmar-tessera-0   awsstorageclass            34m
+pvc-f4283e0e-e279-450f-ad19-db22bc58577c   1Gi        RWO            Delete           Bound         mmar-bes/mmar-tessera-pv-mmar-tessera-0      awsstorageclass            34m
