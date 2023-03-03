@@ -13,7 +13,7 @@
     no_log: "{{ no_ansible_log | default(false) }}"
   - import_playbook: network-schema-validator.yaml  
     when: reset is undefined or reset == 'false'       
-  - import_playbook: environment-setup.yaml   # First setup environment for each organization
+  # - import_playbook: environment-setup.yaml   # First setup environment for each organization
   - import_playbook: kubernetes-env-setup.yaml # Then deploy Flux for each organization
     when: reset is undefined or reset == 'false'
   - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/deploy-network.yaml"
@@ -36,16 +36,16 @@
     vars:
       add_new_org: false
     when: network.type == 'quorum' and (reset is undefined or reset == 'false')
-  - import_playbook: "{{ playbook_dir }}/../../hyperledger-besu/configuration/generate-crypto.yaml"
-    vars:
-      add_new_org: false
-    when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is defined and network.crypto_only == true)
-  - import_playbook: "{{ playbook_dir }}/../../hyperledger-besu/configuration/deploy-network.yaml"
-    vars:
-      add_new_org: false
-    when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is undefined or network.crypto_only == false)
-  - import_playbook: "{{ playbook_dir }}/../../r3-corda-ent/configuration/deploy-network.yaml"
-    when: network.type == 'corda-enterprise' and (reset is undefined or reset == 'false')
+  #  - import_playbook: "{{ playbook_dir }}/../../hyperledger-besu/configuration/generate-crypto.yaml"
+  #   vars:
+  #     add_new_org: false
+  #   when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is defined and network.crypto_only == true)
+  # - import_playbook: "{{ playbook_dir }}/../../hyperledger-besu/configuration/deploy-network.yaml"
+  #   vars:
+  #     add_new_org: false
+  #   #when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is undefined or network.crypto_only == false)
+  # - import_playbook: "{{ playbook_dir }}/../../r3-corda-ent/configuration/deploy-network.yaml"
+  #   when: network.type == 'corda-enterprise' and (reset is undefined or reset == 'false')
     
 # Reseting the network
   - import_playbook: "{{ playbook_dir }}/../../r3-corda/configuration/reset-network.yaml"
