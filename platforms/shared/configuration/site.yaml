@@ -43,7 +43,7 @@
   - import_playbook: "{{ playbook_dir }}/../../hyperledger-besu/configuration/deploy-network.yaml"
     vars:
       add_new_org: false
-    #when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is undefined or network.crypto_only == false)
+    when: network.type == 'besu' and (reset is undefined or reset == 'false') and (network.crypto_only is undefined or network.crypto_only == false)
   - import_playbook: "{{ playbook_dir }}/../../r3-corda-ent/configuration/deploy-network.yaml"
     when: network.type == 'corda-enterprise' and (reset is undefined or reset == 'false')
     
