@@ -29,7 +29,7 @@ spec:
       name: validator1
       clientport: 8888
     vault:
-      address: http://a94f258ac51304b63a9bceb42a204cb6-2100507752.eu-west-1.elb.amazonaws.com:20002
+      address: http://a097b80b62b4d4312aca282e211677c9-1359170190.eu-west-1.elb.amazonaws.com:20002
       secretengine: secretsv2
       authpath: besusupplychain
       rootcasecret: secretsv2/data/supplychain-bes/crypto/ambassadorcerts/rootca
