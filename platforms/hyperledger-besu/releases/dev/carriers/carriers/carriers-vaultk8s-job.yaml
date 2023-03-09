@@ -26,7 +26,7 @@ spec:
     vault:
       reviewer_service: vault-reviewer
       role: vault-role
-      address: http://a94f258ac51304b63a9bceb42a204cb6-2100507752.eu-west-1.elb.amazonaws.com:20002
+      address: http://a097b80b62b4d4312aca282e211677c9-1359170190.eu-west-1.elb.amazonaws.com:20002
       authpath: besucarriers
       policy: vault-crypto-carriers-bes-carriers-ro
       policydata: "{\n  \"policy\": \"path \\\"secretsv2/data/carriers-bes/crypto/*\\\" {\n    capabilities = [\\\"read\\\", \\\"list\\\", \\\"create\\\", \\\"update\\\"]\n  }\n  path \\\"secretsv2/data/carriers-bes/smartContracts/*\\\" {\n    capabilities = [\\\"read\\\", \\\"list\\\"]\n  }\"\n}"
