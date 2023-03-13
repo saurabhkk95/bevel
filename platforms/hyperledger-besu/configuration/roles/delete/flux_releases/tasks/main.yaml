@@ -22,159 +22,159 @@
     done
   ignore_errors: yes
 
-- name: Delete gitrepositories
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    gitrepositories_list=($(kubectl get gitrepositories -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#gitrepositories_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the gitrepositories list
-        for gitrepos in "${gitrepositories_list[@]}"
-        do
-            echo "gitrepository name: $gitrepos"
-            # kubectl delete gitrepository $gitrepos -n {{ org_namespace }}
-            echo "gitrepository $gitrepos of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No gitrepositories existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete gitrepositories
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     gitrepositories_list=($(kubectl get gitrepositories -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#gitrepositories_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the gitrepositories list
+#         for gitrepos in "${gitrepositories_list[@]}"
+#         do
+#             echo "gitrepository name: $gitrepos"
+#             # kubectl delete gitrepository $gitrepos -n {{ org_namespace }}
+#             echo "gitrepository $gitrepos of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No gitrepositories existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete helmrepositories
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    helmrepositories_list=($(kubectl get helmrepositories -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#helmrepositories_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the helmrepositories list
-        for helmrepos in "${helmrepositories_list[@]}"
-        do
-            echo "helmrepository name: $helmrepos"
-            # kubectl delete helmrepository $helmrepos -n {{ org_namespace }}
-            echo "helmrepository $helmrepos of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No helmrepositories existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete helmrepositories
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     helmrepositories_list=($(kubectl get helmrepositories -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#helmrepositories_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the helmrepositories list
+#         for helmrepos in "${helmrepositories_list[@]}"
+#         do
+#             echo "helmrepository name: $helmrepos"
+#             # kubectl delete helmrepository $helmrepos -n {{ org_namespace }}
+#             echo "helmrepository $helmrepos of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No helmrepositories existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete kustomizations
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    kustomizations_list=($(kubectl get kustomizations -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#kustomizations_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the kustomizations list
-        for kustomizations in "${kustomizations_list[@]}"
-        do
-            echo "helmrepository name: $kustomizations"
-            # kubectl delete kustomization $kustomizations -n {{ org_namespace }}
-            echo "kustomizations $kustomizations of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No kustomizations existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete kustomizations
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     kustomizations_list=($(kubectl get kustomizations -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#kustomizations_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the kustomizations list
+#         for kustomizations in "${kustomizations_list[@]}"
+#         do
+#             echo "helmrepository name: $kustomizations"
+#             # kubectl delete kustomization $kustomizations -n {{ org_namespace }}
+#             echo "kustomizations $kustomizations of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No kustomizations existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete buckets
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    buckets_list=($(kubectl get buckets -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#buckets_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the buckets list and delete them 
-        for bucket in "${buckets_list[@]}"
-        do
-            echo "bucket name: $bucket"
-            # kubectl delete bucket $bucket -n {{ org_namespace }}
-            echo "bucket $bucket of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No bucket existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete buckets
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     buckets_list=($(kubectl get buckets -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#buckets_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the buckets list and delete them 
+#         for bucket in "${buckets_list[@]}"
+#         do
+#             echo "bucket name: $bucket"
+#             # kubectl delete bucket $bucket -n {{ org_namespace }}
+#             echo "bucket $bucket of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No bucket existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete providers
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    providers_list=($(kubectl get providers -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#providers_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the providers list
-        for provider in "${providers_list[@]}"
-        do
-            echo "provider name: $provider"
-            # kubectl delete provider $provider -n {{ org_namespace }}
-            echo "provider $provider of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No providers existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete providers
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     providers_list=($(kubectl get providers -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#providers_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the providers list
+#         for provider in "${providers_list[@]}"
+#         do
+#             echo "provider name: $provider"
+#             # kubectl delete provider $provider -n {{ org_namespace }}
+#             echo "provider $provider of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No providers existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete receivers
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    receivers_list=($(kubectl get receivers -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#receivers_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the receivers list
-        for receiver in "${receivers_list[@]}"
-        do
-            echo "receiver name: $receiver"
-            # kubectl delete receiver $receiver -n {{ org_namespace }}
-            echo "receiver $receiver of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No receivers existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete receivers
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     receivers_list=($(kubectl get receivers -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#receivers_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the receivers list
+#         for receiver in "${receivers_list[@]}"
+#         do
+#             echo "receiver name: $receiver"
+#             # kubectl delete receiver $receiver -n {{ org_namespace }}
+#             echo "receiver $receiver of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No receivers existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
-- name: Delete alerts
-  args:
-    executable: /bin/bash
-  shell: |
-    echo "Current namespace: {{ org_namespace }}"
-    alerts_list=($(kubectl get alerts -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
-    if [ ${#alerts_list[@]} -gt 0 ]; then
-    {   
-        # iterate over the alerts list
-        for alert in "${alerts_list[@]}"
-        do
-            echo "alert name: $alert"
-            # kubectl delete alert $alert -n {{ org_namespace }}
-            echo "alert $alert of namespace {{ org_namespace }} is deleted"
-        done
-    }
-    else
-    {
-        echo "No alert existed inside namespace {{ org_namespace }}"
-    }
-    fi
+# - name: Delete alerts
+#   args:
+#     executable: /bin/bash
+#   shell: |
+#     echo "Current namespace: {{ org_namespace }}"
+#     alerts_list=($(kubectl get alerts -n {{ org_namespace }} | awk '{if(NR>1)print $1}'))
+#     if [ ${#alerts_list[@]} -gt 0 ]; then
+#     {   
+#         # iterate over the alerts list
+#         for alert in "${alerts_list[@]}"
+#         do
+#             echo "alert name: $alert"
+#             # kubectl delete alert $alert -n {{ org_namespace }}
+#             echo "alert $alert of namespace {{ org_namespace }} is deleted"
+#         done
+#     }
+#     else
+#     {
+#         echo "No alert existed inside namespace {{ org_namespace }}"
+#     }
+#     fi
 
 # This task deletes the namespaces
 - name: Deletes namespaces
