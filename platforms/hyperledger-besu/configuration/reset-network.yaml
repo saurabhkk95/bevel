@@ -51,7 +51,7 @@
         state: absent
         api_version: v1
         kind: Service
-        namespace: flux-{{ network.env.type }}
+        namespace: flux-{{ network.env.type }} # flux-sau
         name: "{{ item[0] }}"
         kubeconfig: "{{ kubernetes.config_file }}"
       vars:
@@ -93,19 +93,37 @@
         - "{{ network['organizations'] }}"
       ignore_errors: yes
 
-    ##Delete Flux namespace 
-    - name: delete flux namespace
+    ##Delete ClusterRoleList related to flux
+    - name: Delete flux ClusterRoleList
       k8s:
-        name: flux-{{ network.env.type }}
-        api_version: v1
-        kind: Namespace
         state: absent
+        api_version: v1
+        kind: ClusterRoleList
+        namespace: flux-{{ network.env.type }}
+        name: "{{ item[0] }}"
         kubeconfig: "{{ kubernetes.config_file }}"
       vars:
-        kubernetes: "{{ item.k8s }}"
-      loop: "{{ network['organizations'] }}"
+        kubernetes: "{{ item[1].k8s }}"
+      with_nested:
+        - ["helm-controller", "kustomize-controller", "notification-controller", "source-controller"]
+        - "{{ network['organizations'] }}"
       ignore_errors: yes
 
+    ##Delete ClusterRoleBindingList related to flux
+    - name: Delete flux ClusterRoleBindingList
+      k8s:
+        state: absent
+        api_version: v1
+        kind: ClusterRoleBindingList
+        namespace: flux-{{ network.env.type }}
+        name: "{{ item[0] }}"
+        kubeconfig: "{{ kubernetes.config_file }}"
+      vars:
+        kubernetes: "{{ item[1].k8s }}"
+      with_nested:
+        - ["helm-controller", "kustomize-controller", "notification-controller", "source-controller"]
+        - "{{ network['organizations'] }}"
+      ignore_errors: yes
 
     # Delete Helmreleases
     # Change this rile if you have new Helreleases to delete
@@ -118,6 +136,19 @@
         services: "{{ item.services }}"
         kubernetes: "{{ item.k8s }}"
       loop: "{{ network['organizations'] }}"
+
+    ##Delete Flux namespace 
+    - name: delete flux namespace
+      k8s:
+        name: flux-{{ network.env.type }}
+        api_version: v1
+        kind: Namespace
+        state: absent
+        kubeconfig: "{{ kubernetes.config_file }}"
+      vars:
+        kubernetes: "{{ item.k8s }}"
+      loop: "{{ network['organizations'] }}"
+      ignore_errors: yes
 
     # Delete Gitops file and check-in
     - include_role:

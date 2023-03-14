@@ -1,0 +1,77 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: carrierscarriersmember-node
+  namespace: carriers-bes
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: carrierscarriersmember-node
+  interval: 1m
+  chart:
+   spec:
+    chart: platforms/hyperledger-besu/charts/node_besu
+    sourceRef:
+      kind: GitRepository
+      name: flux-sau
+      namespace: flux-sau
+  values:
+    metadata:
+      namespace: carriers-bes
+      labels:
+    replicaCount: 1
+    staticnodes:
+      - "enode://58a2a4f2f75d28266bf01184d814163974508a7d6feb99cd1d28c40bdc2a7cdaccd9efa3407b19e69167d76f850d44b7f879fe6c1464be1863be7e2bdb71f25a@validator1.bes.dev2.aws.blockchaincloudpoc-develop.com:15010"
+      - "enode://5e4dcf33f2ca631453129c92ac7d42126b82d62679f2054037929d7e436ce13fd88465b90f00276fac62121446ae236227e07e303191c6b3c86be42eb48c8867@validator2.bes.dev2.aws.blockchaincloudpoc-develop.com:15012"
+      - "enode://9a31ad9c314f56740470d4259f4728db01ca6e5a57317d29b064511ba3873d14aecdfdad3900428989010a08a36e1f1b7bd84b4f2a8a22bdf15b4f09d3663967@validator3.bes.dev2.aws.blockchaincloudpoc-develop.com:15014"
+      - "enode://3c5e3e4d93ef01996acbae920efa78c71fb2f1fcae33ce08f940484575f236b80207b628f57bde5eb0c7b9e8bbbae34282d155ea664cd4e38578d4cb8347e711@validator4.bes.dev2.aws.blockchaincloudpoc-develop.com:15016"
+      - "enode://cf00f73b471a71f05822bcb9bd6024463ff8fe5a7ff9833cceb80f163d50a3aebb35a3688e2cb7c72ec960d34b3510b8598d64b0353ddba22527e6d4d8a7a04c@carriers.bes.dev2.aws.blockchaincloudpoc-develop.com:15018"
+
+    liveliness_check:
+      enabled: false
+    healthcheck:
+      readinessthreshold: 100
+      readinesscheckinterval: 5
+    proxy:
+      provider: ambassador
+      external_url: carriers.bes.dev2.aws.blockchaincloudpoc-develop.com
+      p2p: 15018
+      rpc: 15019
+
+    images:
+      node: hyperledger/besu:21.10.6
+      alpineutils: ghcr.io/hyperledger/bevel-alpine:latest
+      pullPolicy: IfNotPresent
+
+    node:
+      name: carriers
+      consensus: ibft
+      subject: O=Carriers,OU=Carriers,L=51.50/-0.13/London,C=GB
+      mountPath: /opt/besu/data
+      servicetype: ClusterIP
+      imagePullSecret: regcred
+      ports:
+        p2p: 30303
+        rpc: 8545
+        ws: 8546
+
+    tm:
+      type: tessera
+      tls: True
+      url: "https://carriers-tessera.carriers-bes:8888"
+
+    storage:
+      storageclassname: awsstorageclass
+      storagesize: 1Gi
+
+    vault:
+      address: http://a097b80b62b4d4312aca282e211677c9-1359170190.eu-west-1.elb.amazonaws.com:20002
+      secretprefix: secretsv2/data/carriers-bes/crypto/carriers
+      serviceaccountname: vault-auth
+      keyname: data
+      tmdir: tm
+      tlsdir: tls
+      role: vault-role
+      authpath: besucarriers
+
+    genesis: ewogICJjb25maWciOiB7CiAgICAiY2hhaW5JZCI6IDIwMTgsCiAgICAiY29uc3RhbnRpbm9wbGVmaXhibG9jayI6IDAsCiAgICAiY29udHJhY3RTaXplTGltaXQiOiAyMTQ3NDgzNjQ3LAogICAgImliZnQyIjogewogICAgICAiYmxvY2twZXJpb2RzZWNvbmRzIjogMiwKICAgICAgImVwb2NobGVuZ3RoIjogMzAwMDAsCiAgICAgICJyZXF1ZXN0dGltZW91dHNlY29uZHMiOiAxMAogICAgfQogIH0sCiAgIm5vbmNlIjogIjB4MCIsCiAgInRpbWVzdGFtcCI6ICIweDU4ZWU0MGJhIiwKICAiZ2FzTGltaXQiOiAiMHgxZmZmZmZmZmZmZmZmZiIsCiAgImRpZmZpY3VsdHkiOiAiMHgxIiwKICAiZXh0cmFEYXRhIjogIjB4Zjg3ZWEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGY4NTQ5NDgzY2U4NDM3NjVjZjBjOGE1OWUyZWFkNmVmYWRhMzY2NmJjOGIxM2M5NDJhNjAyZGJmOGE5NGQ5Njg4OWQ1NzY4MDU2NjZhZTRlMWMzMjZmMDk5NGE4NmNiZjc1YmViM2YzMmRhOTZkOGNiNzdhMTcyZDA1OTk5NjBkZDM5NGYyZTQ4YWRiZjM0OTg1ZDMyNDFjN2NjYWYyNmM2YzI5MzEwNDU1M2U4MDg0MDAwMDAwMDBjMCIKfQ==

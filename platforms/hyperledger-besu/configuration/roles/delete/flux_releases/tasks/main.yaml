@@ -9,7 +9,6 @@
 #############################################################################################
 
 #############################################################################################
-
 # Remove all Helm installations
 - name: Remove all Helm installations of namespace {{ org_namespace }}
   args:
@@ -21,6 +20,102 @@
       KUBECONFIG={{ kubernetes.config_file }} helm uninstall ${helm_release}
     done
   ignore_errors: yes
+
+- name: Delete gitrepositories
+  k8s:
+    kind: Gitrepositories
+    namespace: "{{ gitrepositories_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: gitrepositories_item
+  ignore_errors: yes
+
+- name: Delete helmrepositories
+  k8s:
+    kind: Helmrepositories
+    namespace: "{{ helmrepositories_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: helmrepositories_item
+  ignore_errors: yes
+
+- name: Delete buckets
+  k8s:
+    kind: Buckets
+    namespace: "{{ buckets_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: buckets_item
+  set_fact:
+    helmrepositories_array: []
+  ignore_errors: yes
+  
+
+- name: Delete kustomizations
+  k8s:
+    kind: Kustomizations
+    namespace: "{{ kustomizations_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: kustomizations_item
+  ignore_errors: yes
+
+- name: Delete alerts
+  k8s:
+    kind: Alerts
+    namespace: "{{ alerts_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: alerts_item
+  ignore_errors: yes
+
+- name: Delete providers
+  k8s:
+    kind: Providers
+    namespace: "{{ providers_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: providers_item
+  ignore_errors: yes
+
+- name: Delete receivers
+  k8s:
+    kind: Receivers
+    namespace: "{{ receivers_item.name | lower }}-bes"
+    name: "flux-{{ network.type }}-{{ network.env.type }}"
+    kubeconfig: "{{ kubernetes.config_file }}"
+    context: "{{ kubernetes.context }}"
+    state: absent
+  loop: "{{ network.organizations }}"
+  loop_control:
+    loop_var: receivers_item
+  ignore_errors: yes
+
+
 
 # This task deletes the namespaces
 - name: Deletes namespaces
