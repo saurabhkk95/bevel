@@ -21,7 +21,7 @@ spec:
       namespace: carriers-bes
       labels:
     images:
-      alpineutils: ghcr.io/hyperledger/bevel-alpine:latest
+      alpineutils: ghcr.io/hyperledger/bevel-alpine-ext:latest
       tessera: quorumengineering/tessera:hashicorp-21.7.3
       busybox: busybox
       mysql: mysql/mysql-server:5.7
@@ -68,3 +68,4 @@ spec:
       storageclassname: awsstorageclass
       storagesize: 1Gi
       dbstorage: 1Gi
+
