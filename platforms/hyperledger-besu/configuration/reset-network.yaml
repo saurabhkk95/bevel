@@ -94,18 +94,18 @@
       ignore_errors: yes
 
     ##Delete ClusterRoleList related to flux
-    - name: Delete flux ClusterRoleList
+    - name: Delete flux ClusterRole
       k8s:
         state: absent
         api_version: v1
-        kind: ClusterRoleList
+        kind: ClusterRole
         namespace: flux-{{ network.env.type }}
         name: "{{ item[0] }}"
         kubeconfig: "{{ kubernetes.config_file }}"
       vars:
         kubernetes: "{{ item[1].k8s }}"
       with_nested:
-        - ["helm-controller", "kustomize-controller", "notification-controller", "source-controller"]
+        - ["crd-controller-flux-sau"]
         - "{{ network['organizations'] }}"
       ignore_errors: yes
 
