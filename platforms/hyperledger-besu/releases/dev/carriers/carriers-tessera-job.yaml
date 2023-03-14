@@ -34,3 +34,4 @@ spec:
       keyprefix: carriers-bes/crypto
       serviceaccountname: vault-auth
       tmprefix: secretsv2/data/carriers-bes/crypto
+
