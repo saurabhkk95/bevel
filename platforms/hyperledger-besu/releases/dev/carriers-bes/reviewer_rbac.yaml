@@ -11,3 +11,6 @@ subjects:
 - kind: ServiceAccount
   name: vault-reviewer
   namespace: carriers-bes
+- kind: ServiceAccount
+  name: vault-auth
+  namespace: carriers-bes
