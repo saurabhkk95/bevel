@@ -1,0 +1,78 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: supplychainvalidator2validator-node
+  namespace: supplychain-bes
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: supplychainvalidator2validator-node
+  interval: 1m
+  chart:
+   spec:
+    chart: platforms/hyperledger-besu/charts/node_validator
+    sourceRef:
+      kind: GitRepository
+      name: flux-sau
+      namespace: flux-sau
+  values:
+    replicaCount: 1
+
+    healthcheck:
+      readinessthreshold: 100
+      readinesscheckinterval: 5
+
+    staticnodes:
+      - "enode://b03f185f521c1bcad67d3955a56c5a1a1c1335bbc5e73417c0d14c446debfc8ecb74b4fdfb1c27a8ccdcec4c4aca48e3f3c1ba8c06177af71b3bf5ce360bd2fe@validator1.bes.dev2.aws.blockchaincloudpoc-develop.com:15010"
+      - "enode://e3b94664ea61d7d72f8df662737b8f39eeeaf078c023fe683f4a5c21428530022690dda22306ee3a8940d7402f39ee64fa4819e0630e2575da4e9ba39a558535@validator2.bes.dev2.aws.blockchaincloudpoc-develop.com:15012"
+      - "enode://5a26fdc8df0d17398bc55addde57a44e83cb63860a20e8e7996cbc01d76626cf06c0194f2bd619b19273535ff6e576f1c3050301166dc3f8549b1262ac8bd86c@validator3.bes.dev2.aws.blockchaincloudpoc-develop.com:15014"
+      - "enode://c0a1772f44bb4e25a6c9745e518757f594b61f242d88faf218d411c5945ed737d273a6f837ab9eb83f754e7dd43b3b5a3817bb53758bce538406096553218fa3@validator4.bes.dev2.aws.blockchaincloudpoc-develop.com:15016"
+      - "enode://2e7e6152b7c9b1d1cbd37f74bf70742fa50e466f06647b1fd7cb1c6c2d90ba14a5a6263652a1f92a9bbce7da2b269b26aa4fe2bda55e5b8a2d624de674af691b@carriers.bes.dev2.aws.blockchaincloudpoc-develop.com:15018"
+
+    metadata:
+      namespace: supplychain-bes
+      labels:
+
+    ambassador:
+      external_url_suffix: bes.dev2.aws.blockchaincloudpoc-develop.com
+
+    liveliness_check:
+      enabled: false
+    proxy:
+      provider: ambassador
+      external_url: supplychain.bes.dev2.aws.blockchaincloudpoc-develop.com
+      p2p: 15012
+      rpc: 15013
+
+    images:
+      node: hyperledger/besu:21.10.6
+      alpineutils: ghcr.io/hyperledger/bevel-alpine:latest
+      pullPolicy: IfNotPresent
+
+    node:
+      name: validator2
+      tls: True
+      consensus: ibft
+      mountPath: /opt/besu/data
+      servicetype: ClusterIP
+      imagePullSecret: regcred
+      ports:
+        p2p: 30303
+        rpc: 8545
+        ws: 8546
+
+    storage:
+      storageclassname: awsstorageclass
+      storagesize: 1Gi
+
+    vault:
+      address: http://a097b80b62b4d4312aca282e211677c9-1359170190.eu-west-1.elb.amazonaws.com:20002
+      secretprefix: secretsv2/data/supplychain-bes/crypto/validator2
+      serviceaccountname: vault-auth
+      keyname: data
+      tlsdir: tls
+      role: vault-role
+      authpath: besusupplychain
+
+    genesis: ewogICJjb25maWciOiB7CiAgICAiY2hhaW5JZCI6IDIwMTgsCiAgICAiY29uc3RhbnRpbm9wbGVmaXhibG9jayI6IDAsCiAgICAiY29udHJhY3RTaXplTGltaXQiOiAyMTQ3NDgzNjQ3LAogICAgImliZnQyIjogewogICAgICAiYmxvY2twZXJpb2RzZWNvbmRzIjogMiwKICAgICAgImVwb2NobGVuZ3RoIjogMzAwMDAsCiAgICAgICJyZXF1ZXN0dGltZW91dHNlY29uZHMiOiAxMAogICAgfQogIH0sCiAgIm5vbmNlIjogIjB4MCIsCiAgInRpbWVzdGFtcCI6ICIweDU4ZWU0MGJhIiwKICAiZ2FzTGltaXQiOiAiMHgxZmZmZmZmZmZmZmZmZiIsCiAgImRpZmZpY3VsdHkiOiAiMHgxIiwKICAiZXh0cmFEYXRhIjogIjB4Zjg3ZWEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGY4NTQ5NGZjNTY5OGQwYmM5NmExN2I2MWYzMWVkNDMzMjViZTdkMjM4N2NhMjk5NDY1NDIxMGU3NjE5YjQ0YWU3NmNkMzhmN2QxZTljMmNiNzlhODRlNDY5NDk4NjNhZWE5ZTFiNjdmZGNlYmJmMjAyYzhiNGIxNTkzNzZiYWIzY2M5NGE4OTFlZjE1NmY5OGY3Y2RiMzcwOGFjNjRhYjM0MzJhZDNlYmMxMjA4MDg0MDAwMDAwMDBjMCIKfQ==
+
